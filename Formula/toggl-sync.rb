@@ -22,13 +22,13 @@ class TogglSync < Formula
 
   ## Plist handling
   # Does your plist need to be loaded at startup?
-  plist_options :startup => true
+  # plist_options :startup => true
   # Or only when necessary or desired by the user?
   plist_options :manual => "toggl-sync"
   # Or perhaps you'd like to give the user a choice? Ooh fancy.
-  plist_options :startup => "true", :manual => "toggl-sync --service"
+  #  plist_options :startup => "true", :manual => "toggl-sync --service"
 
-  def plist; <<-EOS.undent
+  def plist; <<~EOS
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
     <plist version="1.0">
