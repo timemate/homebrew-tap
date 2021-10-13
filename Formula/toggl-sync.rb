@@ -7,6 +7,7 @@ class TogglSync < Formula
   depends_on "go"
 
   def install
+    (var/"log/toggl-sync").mkpath unless File.exists? var/"log/toggl-sync"
     ENV["GOPATH"] = buildpath
     ENV["GO111MODULE"] = "on"
     ENV["PATH"] = "#{ENV["PATH"]}:#{buildpath}/bin"
@@ -46,9 +47,9 @@ class TogglSync < Formula
       <key>KeepAlive</key>
       <true/>
       <key>StandardErrorPath</key>
-      <string>/dev/null</string>
+      <string>#{var}/log/toggl-sync/toggl-sync.log</string>
       <key>StandardOutPath</key>
-      <string>/dev/null</string>
+      <string>#{var}/log/toggl-sync/toggl-sync.log</string>
     </plist>
     EOS
   end
