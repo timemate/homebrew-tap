@@ -9,7 +9,6 @@ class TogglSync < Formula
   def install
     ENV["GOPATH"] = buildpath
     ENV["GO111MODULE"] = "on"
-    ENV["GOFLAGS"] = "-mod=vendor"
     ENV["PATH"] = "#{ENV["PATH"]}:#{buildpath}/bin"
     (buildpath/"src/github.com/timemate/toggl-sync").install buildpath.children
     cd "src/github.com/timemate/toggl-sync" do
