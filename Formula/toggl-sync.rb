@@ -7,8 +7,6 @@ class TogglSync < Formula
   depends_on "go"
 
   def install
-    (etc/"toggl-sync").mkpath unless File.exists? etc/"toggl-sync"
-    prefix.install_symlink etc/"toggl-sync" => "config"
     (var/"log/toggl-sync").mkpath unless File.exists? var/"log/toggl-sync"
     prefix.install_symlink var/"log/toggl-sync" => "logs"
     ENV["GOPATH"] = buildpath
@@ -18,6 +16,11 @@ class TogglSync < Formula
     cd "src/github.com/timemate/toggl-sync" do
       system "go", "build", "-o", bin/"toggl-sync", "."
     end
+  end
+
+  def caveats; <<~EOS
+      Logs:   #{var}/log/toggl-sync/toggl-sync.log
+    EOS
   end
 
   test do
