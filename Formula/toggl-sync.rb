@@ -38,11 +38,12 @@ class TogglSync < Formula
     <plist version="1.0">
     <dict>
       <key>Label</key>
-        <string>#{plist_name}</string>
+      <string>#{plist_name}</string>
       <key>ProgramArguments</key>
       <array>
         <string>#{bin}/toggl-sync</string>
-        <string>-period 1w</string>
+        <string>-period</string>
+        <string>1w</string>
         <string>--service</string>
       </array>
       <key>RunAtLoad</key>
@@ -53,6 +54,7 @@ class TogglSync < Formula
       <string>#{var}/log/toggl-sync/toggl-sync.log</string>
       <key>StandardOutPath</key>
       <string>#{var}/log/toggl-sync/toggl-sync.log</string>
+    </dict>
     </plist>
     EOS
   end
