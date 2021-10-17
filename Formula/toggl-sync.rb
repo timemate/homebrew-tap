@@ -7,7 +7,7 @@ class TogglSync < Formula
   depends_on "go"
 
   def install
-    etc.install "config" => "toggl-sync" unless File.exists? etc/"toggl-sync"
+    (etc/"toggl-sync").mkpath unless File.exists? etc/"toggl-sync"
     prefix.install_symlink etc/"toggl-sync" => "config"
     (var/"log/toggl-sync").mkpath unless File.exists? var/"log/toggl-sync"
     prefix.install_symlink var/"log/toggl-sync" => "logs"
