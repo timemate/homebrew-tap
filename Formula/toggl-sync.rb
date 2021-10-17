@@ -42,6 +42,7 @@ class TogglSync < Formula
       <key>ProgramArguments</key>
       <array>
         <string>#{bin}/toggl-sync</string>
+        <string>sync</string>
         <string>-period</string>
         <string>1w</string>
         <string>--service</string>
