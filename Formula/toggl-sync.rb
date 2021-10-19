@@ -1,8 +1,8 @@
 class TogglSync < Formula
   desc "Tiny service to sync time entries from toggl to jira"
   homepage "https://github.com/timemate/toggl-sync"
-  url "https://github.com/timemate/toggl-sync/archive/refs/tags/v0.1.3.tar.gz"
-  sha256 "11c44b39c3999354940209f5abe6d2146099c11f6838aa10b729af0964b812f1"
+  url "https://github.com/timemate/toggl-sync/archive/refs/tags/v0.1.4.tar.gz"
+  sha256 "3851888a88a028d34ecea699fb45f009992d58b8c052d47bf7ea683ec72280b0"
 
   depends_on "go"
 
