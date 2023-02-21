@@ -5,13 +5,13 @@
 class TogglSync < Formula
   desc "Toggl sync util"
   homepage "https://github.com/timemate"
-  version "0.2.4"
+  version "0.2.5"
   license "MIT"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.4/toggl-sync-0.2.4-darwin-arm64.tar.gz"
-      sha256 "261b2fde111555103e27287d57f96983008bb7333b44075a9623fe2af79868c9"
+    if Hardware::CPU.intel?
+      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.5/toggl-sync-0.2.5-darwin-amd64.tar.gz"
+      sha256 "14a53af7a485edc980d8ec085325de3501670b8fa03dac9869be7ced5054a63b"
 
       def install
         bin.install "toggl-sync"
@@ -24,9 +24,9 @@ class TogglSync < Formula
         prefix.install_metafiles
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.4/toggl-sync-0.2.4-darwin-amd64.tar.gz"
-      sha256 "7f4bdec9b8054a420ffa48b73df477d10d2ae90e90563dd5982716896ee82390"
+    if Hardware::CPU.arm?
+      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.5/toggl-sync-0.2.5-darwin-arm64.tar.gz"
+      sha256 "7034000b77cb2ddc856860d02a779fef83f5916bd1c4bb5a0dc53d789d1681b2"
 
       def install
         bin.install "toggl-sync"
@@ -42,9 +42,24 @@ class TogglSync < Formula
   end
 
   on_linux do
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.5/toggl-sync-0.2.5-linux-arm64.tar.gz"
+      sha256 "9f1bd5d071b3571ce2dedc9ed4b7be2da2859c1c2ebb9327022c981fa7711898"
+
+      def install
+        bin.install "toggl-sync"
+        output = Utils.popen_read("#{bin}/toggl-sync completion bash")
+        (bash_completion/"toggl-sync").write output
+        output = Utils.popen_read("#{bin}/toggl-sync completion zsh")
+        (zsh_completion/"_toggl-sync").write output
+        output = Utils.popen_read("#{bin}/toggl-sync completion fish")
+        (fish_completion/"toggl-sync.fish").write output
+        prefix.install_metafiles
+      end
+    end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.4/toggl-sync-0.2.4-linux-armv6.tar.gz"
-      sha256 "c0dbb15653fa691589f71e093a39a24e3152cc0181e06d451525acae99529597"
+      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.5/toggl-sync-0.2.5-linux-armv6.tar.gz"
+      sha256 "2846a4bf88827d7e45e2e80c73a7f23f640c8cc6e680b33192854ffdb094683b"
 
       def install
         bin.install "toggl-sync"
@@ -58,23 +73,8 @@ class TogglSync < Formula
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.4/toggl-sync-0.2.4-linux-amd64.tar.gz"
-      sha256 "14f2861af12af11015fbe300a37ae6996edcd5086b0831468df542d5cf0fc25d"
-
-      def install
-        bin.install "toggl-sync"
-        output = Utils.popen_read("#{bin}/toggl-sync completion bash")
-        (bash_completion/"toggl-sync").write output
-        output = Utils.popen_read("#{bin}/toggl-sync completion zsh")
-        (zsh_completion/"_toggl-sync").write output
-        output = Utils.popen_read("#{bin}/toggl-sync completion fish")
-        (fish_completion/"toggl-sync.fish").write output
-        prefix.install_metafiles
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.4/toggl-sync-0.2.4-linux-arm64.tar.gz"
-      sha256 "13686bff29f4c8ca23c7d13299e8947f41225cfc7bfb69cddb2d8d0258f038a8"
+      url "https://github.com/timemate/toggl-sync/releases/download/v0.2.5/toggl-sync-0.2.5-linux-amd64.tar.gz"
+      sha256 "23bb6aae7ac4aa215af8e527f9df68f8a6d417ca45ac8524485efb9abba0f5c4"
 
       def install
         bin.install "toggl-sync"
