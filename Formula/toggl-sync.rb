@@ -89,7 +89,7 @@ class TogglSync < Formula
     end
   end
 
-  plist_options startup: false
+  # plist_options startup: false
 
   def plist
     <<~EOS
